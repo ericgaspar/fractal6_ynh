@@ -1,0 +1,21 @@
+[Unit]
+Description=Fractal6 Notifier (MP)
+ConditionPathExists=__INSTALL_DIR__/
+After=network.target
+
+[Service]
+Type=simple
+User=admin
+Group=admin
+
+WorkingDirectory=__INSTALL_DIR__/
+ExecStart=__INSTALL_DIR__/f6 notifier
+
+Restart=always
+RestartSec=5s
+
+StandardOutput=append:/var/log/__APP__/notifier.log
+StandardError=append:/var/log/__APP__/err.log
+
+[Install]
+WantedBy=multi-user.target

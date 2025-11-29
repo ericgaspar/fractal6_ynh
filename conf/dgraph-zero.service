@@ -1,0 +1,19 @@
+[Unit]
+Description=Dgraph Zero instance
+Wants=network.target
+After=network.target
+
+[Service]
+Type=simple
+User=dgraph
+Group=dgraph
+WorkingDirectory=/home/admin/db
+ExecStart=__INSTALL_DIR__/dgraph zero --config __INSTALL_DIR__/contrib/dgraph/config-zero.yml
+Restart=always
+StandardOutput=journal
+StandardError=journal
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+RequiredBy=dgraph-alpha.service
